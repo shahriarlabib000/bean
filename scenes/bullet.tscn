@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3ecudmae1v53"]
+
+[ext_resource type="Script" path="res://code/bullet.gd" id="1_rribx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nah8q"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_r5lwi"]
+material = SubResource("StandardMaterial3D_nah8q")
+size = Vector3(0.01, 0.01, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ply2f"]
+points = PackedVector3Array(-0.00579365, -0.00579365, -0.0507936, 0.005, 0.005, 0.0478912, 0.00531746, -0.00579365, 0.0507936, -0.00579365, 0.00531746, 0.0507936, 0.005, 0.005, -0.0478912, -0.00579365, -0.00579365, 0.0507936, 0.00531746, -0.00579365, -0.0507936, -0.00579365, 0.00531746, -0.0507936)
+
+[node name="bullet" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+gravity_scale = 0.0
+script = ExtResource("1_rribx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_r5lwi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_ply2f")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+target_position = Vector3(0, 0, -1)

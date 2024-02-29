@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4twrarrheq7n"]
+
+[ext_resource type="Script" path="res://code/enemy.gd" id="1_2e7p3"]
+[ext_resource type="Texture2D" uid="uid://j3g277jtnkgg" path="res://icon.svg" id="2_pngmd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ulyq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvo0m"]
+albedo_texture = ExtResource("2_pngmd")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2kn2f"]
+material = SubResource("StandardMaterial3D_lvo0m")
+
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_2e7p3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4ulyq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2kn2f")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_4ulyq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

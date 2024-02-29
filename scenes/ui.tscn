@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3w1vl5maumht"]
+
+[ext_resource type="Script" path="res://code/ui.gd" id="1_anxo3"]
+[ext_resource type="Texture2D" uid="uid://cjcfrtjjokwed" path="res://icons/crosshair.png" id="2_xmgwy"]
+[ext_resource type="Texture2D" uid="uid://b3dcrg8pwtmrf" path="res://icons/reset2.png" id="4_t0nt2"]
+[ext_resource type="Texture2D" uid="uid://4i7rd82olo7y" path="res://icons/jump.png" id="5_bi5m6"]
+[ext_resource type="Texture2D" uid="uid://3iw0w72o2l2d" path="res://icons/shoot.png" id="6_8iy5q"]
+[ext_resource type="Texture2D" uid="uid://d2t620mot178c" path="res://icons/zoom2.png" id="7_056ps"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/virtual_joystick.tscn" id="7_qa7my"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jl87u"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hsxkc"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_anxo3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_xmgwy")
+
+[node name="tscn_reload" type="TouchScreenButton" parent="."]
+texture_normal = ExtResource("4_t0nt2")
+texture_pressed = ExtResource("4_t0nt2")
+action = "tscn_reload"
+
+[node name="reset" type="TouchScreenButton" parent="."]
+position = Vector2(1350, 63)
+scale = Vector2(50, 50)
+texture_normal = SubResource("PlaceholderTexture2D_jl87u")
+texture_pressed = SubResource("PlaceholderTexture2D_hsxkc")
+action = "reset"
+
+[node name="jump" type="TouchScreenButton" parent="."]
+position = Vector2(1245, 480)
+texture_normal = ExtResource("5_bi5m6")
+action = "jump"
+
+[node name="flash" type="TouchScreenButton" parent="."]
+position = Vector2(1295, 175)
+scale = Vector2(50, 50)
+texture_normal = SubResource("PlaceholderTexture2D_jl87u")
+texture_pressed = SubResource("PlaceholderTexture2D_hsxkc")
+action = "ui_cut"
+
+[node name="shoot" type="TouchScreenButton" parent="."]
+position = Vector2(1226, 263)
+texture_normal = ExtResource("6_8iy5q")
+action = "shoot"
+
+[node name="zoombtn" type="TouchScreenButton" parent="."]
+position = Vector2(1250, 50)
+texture_normal = ExtResource("7_056ps")
+action = "zoombtn"
+
+[node name="fps" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 7.0
+offset_right = 767.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 60
+text = "fps
+"
+horizontal_alignment = 2
+
+[node name="killCount" type="Label" parent="."]
+offset_left = 914.0
+offset_top = 4.0
+offset_right = 981.0
+offset_bottom = 107.0
+theme_override_colors/font_color = Color(0.976471, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 2
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("7_qa7my")]
